@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
 
-    private Rigidbody playerRb;
-    public float speed = 5.0f;
+    public float rotationSpeed;
 
-    // Start is called before the first frame update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       playerRb = GetComponent<Rigidbody>(); 
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        float forwardInput = Input.GetAxis("Vertical");
-        playerRb.AddForce(Vector3.forward * speed * forwardInput);
+        float horizontalInput = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up, horizontalInput *  rotationSpeed * Time.deltaTime);
     }
 }
